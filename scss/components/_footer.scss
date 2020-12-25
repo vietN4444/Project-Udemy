@@ -1,0 +1,122 @@
+.footer {
+  .myContainer {
+    padding: 0 spacing(4.8);
+  }
+  &__container {
+    padding-top: spacing(2.6);
+    &__content {
+      display: flex;
+      &-itemlist {
+        display: flex;
+        flex-grow: 1;
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          flex-basis: 250px;
+          margin-right: spacing(2);
+          li {
+            > a {
+              @include Text($textSecondary, $subtitle, $fwRegular);
+              display: block;
+              padding: spacing(0.3) 0;
+              &:hover {
+                text-decoration: none;
+                color: $textBlue;
+              }
+            }
+          }
+        }
+      }
+      &-language {
+        .footer__language__container {
+          width: 240px;
+          height: 40px;
+          position: relative;
+          > select {
+            @include Text($textGrey,$subtitle,$fwRegular);
+            @include ItemAbsolute(absolute,0,100%
+            ,transparent,1px solid $grey,left,0 spacing(4));
+            height: 100%;
+            left: 0;
+            outline: none;
+            cursor: pointer;
+            z-index: 12;
+            appearance: none;
+            border-radius: 4px;
+            &:hover{
+              border-color: $dark;
+            }
+          }
+          > i {
+            @include ItemAbsolute(absolute,50%,40px,transparent,none,center,0);
+            @include Text($textDarkGrey,$subtitle,$fwBold);
+            left: 0;
+            height: 40px;
+            line-height: 40px;
+            transform: translateY(-50%);
+          }
+          .selectIcon {
+            left: unset;
+            right: 0;
+            width: 30px;
+          }
+        }
+      }
+    }
+    &__credit{
+      margin: spacing(6) 0;
+      display: flex;
+      justify-content: space-between;
+      > a{
+        > img{
+          width: $widthIconLogo;
+        }
+      }
+      > span{
+        @include Text($textDarkGrey,$body2,$fwRegular);
+      }
+    }
+  }
+  @media (max-width:800px){
+    .myContainer{
+      padding: 0 spacing(2);
+    }
+  }
+  @media (max-width:760px){
+    &__container__content{
+      &-itemlist{
+        flex-direction: column;
+        > ul {
+          flex-basis: 0;
+        }
+      }
+    }
+  }
+  @media (max-width:700px){
+    &__container__content{
+      flex-direction: column-reverse;
+      &-language{
+        margin-bottom: spacing(2);
+        .footer__language__container{
+          height: 50px;
+          > select {
+            font-size: $h6;
+          }
+          .selectIcon{
+            width: 40px;
+          }
+        }
+      }
+    }
+    &__container__credit{
+      flex-direction: column;
+      margin: spacing(2) 0;
+      >a {
+        img{
+          margin-bottom: spacing(2);
+        }
+      }
+    }
+  }
+}

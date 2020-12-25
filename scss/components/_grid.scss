@@ -1,0 +1,19 @@
+.myContainer {
+  padding: 0 spacing(3);
+}
+
+.myGrid {
+  @media (min-width: 1340px) {
+    width: 1340px;
+    margin: 0 auto;
+  }
+}
+
+.title {
+  @include Text($textGrey, $h4-1, $fwBold);
+}
+
+.col-2-4 {
+  width: 20%;
+  padding: 0 8px;
+}

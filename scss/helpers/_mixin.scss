@@ -1,0 +1,41 @@
+//----------MIXIN---------
+@mixin Text($color, $fSize, $fWeight) {
+    color: $color;
+    font-size: $fSize;
+    font-weight: $fWeight;
+  }
+  
+@mixin Button($bg,$border,$borderRadi,$py,$px) {
+  background: $bg;
+  border: $border;
+  border-radius: $borderRadi;
+  padding: $py $px;
+}
+
+@mixin ItemAbsolute($position,$top,$width
+,$background,$border,$text-align,$padding){
+  position: $position;
+  top: $top;
+  width: $width;
+  background: $background;
+  border: $border;;
+  text-align: $text-align;
+  padding: $padding;;
+}
+
+@mixin Input($width,$border,$height,$outline){
+  width: calc(100% - #{$width});
+  border: $border;
+  height: $height-icon-search;
+  outline: $outline;
+}
+
+@mixin Icon($width,$align,$lineHeight,$color,$cursor,$fs,$bg){
+  width: $width;
+  text-align: $align;
+  line-height: $lineHeight;
+  color: $color;
+  cursor: $cursor;
+  font-size: $fs;
+  background: $bg;
+}

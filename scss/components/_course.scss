@@ -1,0 +1,205 @@
+.course__item {
+  position: relative;
+  &:hover {
+    > img {
+      filter: brightness(85%);
+    }
+    .coursePopover {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+  }
+  > img {
+    display: block;
+    width: 100%;
+    border: 1px solid $lightGrey;
+    border-radius: 4px;
+  }
+  > p {
+    @include Text($textDark, $p2, $fwBold);
+    margin-top: spacing(0.8);
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  > span {
+    @include Text($textDarkGrey, $body2, $fwRegular);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__vote {
+    align-items: center;
+    margin-bottom: spacing(0.6);
+    > p {
+      @include Text($textOrange, $subtitle, $fwBold);
+      margin: 0;
+      margin-right: spacing(0.6);
+    }
+    > i {
+      @include Text($textLightOrange, $p3, $fwBold);
+      margin-right: spacing(0.2);
+      margin-top: 1;
+    }
+    > span {
+      @include Text($textDarkGrey, $body2, $fwRegular);
+      margin-left: spacing(0.4);
+    }
+  }
+  &__price {
+    align-items: center;
+    margin-bottom: spacing(0.6);
+    > p {
+      @include Text($textDark, $h6, $fwBold);
+      margin: 0;
+      margin-right: spacing(1);
+    }
+    > span {
+      @include Text($textDarkGrey, $subtitle, $fwRegular);
+      text-decoration: line-through;
+    }
+  }
+  &__sales {
+    background: $lightOrange;
+    width: min-content;
+    padding: spacing(0.3) spacing(1);
+    border-radius: 4px;
+    > p {
+      @include Text($textDarkBrown, $body2, $fwBold);
+      margin: 0;
+    }
+  }
+}
+
+.coursePopover {
+  opacity: 0;
+  position: absolute;
+  top: -40px;
+  left: 100%;
+  z-index: 1000;
+  cursor: auto;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: all 0.2s;
+  // display: none;
+  &__container {
+    width: 340px;
+    margin: 16px;
+    padding: 24px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.16);
+    &__alink {
+      @include Text($textGrey, $p1, $fwBold);
+      margin-bottom: 4px;
+      display: block;
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+        color: $textBlue;
+      }
+    }
+    &__badge {
+      display: flex;
+      align-items: center;
+      > p {
+        @include Text($textDarkBrown, $body2, $fwBold);
+        margin: 0;
+        background-color: $lightOrange;
+        padding: 2px 8px;
+        margin-right: 8px;
+      }
+      > span {
+        @include Text(#2d8643, $body2, $fwRegular);
+        > span {
+          font-weight: bold;
+        }
+      }
+    }
+    &__stats {
+      margin-top: 2px;
+      > span {
+        @include Text($textDarkGrey, $body2, $fwRegular);
+      }
+    }
+    &__headline {
+      @include Text($textLightDark, $subtitle, $fwRegular);
+      margin-top: 2px;
+    }
+    &__listDetail {
+      ul {
+        padding: 0;
+        > li {
+          list-style: none;
+          display: flex;
+          margin-bottom: spacing(1);
+          > p {
+            @include Text($textLightDark, $subtitle, $fwRegular);
+            margin: 0;
+            margin-left: spacing(1.2);
+          }
+        }
+      }
+      &-checkIcon {
+        position: relative;
+        top: 4px;
+        left: 0;
+        width: 8px;
+        height: 12px;
+        border: 2px solid $textDarkGrey;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        transform: rotate(45deg);
+      }
+    }
+    &__btnGroup {
+      display: flex;
+      &-btnAddCart {
+        height: 48px;
+        width: 100%;
+        > button {
+          height: 100%;
+          width: 100%;
+          outline: none;
+          @include Button($redOrange, none, 4px, 0, 0);
+          @include Text($textWhite, $h6, $fwBold);
+          &:hover {
+            background: $red;
+          }
+        }
+      }
+      &-btnWishlist {
+        height: 48px;
+        width: 48px;
+        margin-left: spacing(1);
+        > button {
+          height: 100%;
+          outline: none;
+          @include Button(transparent, none, 50%, 0, 0);
+          > i {
+            @include Button(transparent, 1px solid #2896a9, 50%, 0, 0);
+            line-height: 47px;
+            color: $textSecondary;
+            font-size: 20px;
+            padding: 0 spacing(1.4);
+            &:hover {
+              border-color: #1c6a78;
+              color: $blueGem;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 1200px) {
+    left: 80%;
+  }
+  @media (max-width: 992px) {
+    display: none;
+  }
+}

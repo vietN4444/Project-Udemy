@@ -1,0 +1,543 @@
+.header-gradient {
+  width: 100%;
+  display: block;
+  height: $height-header-gradient;
+  background: linear-gradient(
+    90deg,
+    rgb(100, 91, 83) 0%,
+    rgb(235, 82, 82) 18.23%,
+    rgb(247, 143, 47) 34.37%,
+    rgb(244, 193, 81) 48.96%,
+    rgb(82, 187, 118) 66.15%,
+    rgb(38, 165, 215) 82.29%,
+    rgb(224, 105, 183) 100%
+  );
+}
+.header {
+  height: $height-header;
+  background: $paper;
+  display: flex;
+  align-items: center;
+  padding: spacing(0) spacing(1.5);
+  position: relative;
+
+  &__logo {
+    img {
+      width: $widthIconLogo;
+      margin-right: spacing(1);
+    }
+  }
+
+  &__categories {
+    > span {
+      @include Text($textGrey, $subtitle, $fwRegular);
+      cursor: pointer;
+      padding: spacing(1) spacing(2.4);
+      line-height: $height-header;
+      user-select: none;
+    }
+    &:hover {
+      > span {
+        color: $textSecondary;
+      }
+      .header__categories__dropdown {
+        display: flex;
+      }
+    }
+    &__dropdown {
+      display: none;
+      z-index: 11;
+      left: calc(110px + 15px);
+      @include ItemAbsolute(
+        absolute,
+        $height-header,
+        max-content,
+        $paper,
+        none,
+        center,
+        spacing(0)
+      );
+      &-item {
+        border: 1px solid $lightGrey;
+        min-height: 40rem;
+        padding: spacing(1.6);
+        width: 260px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+        > ul {
+          list-style: none;
+          padding: 0;
+          // padding-bottom: spacing(10);
+          margin: 0;
+          > li {
+            display: flex;
+            align-items: center;
+            padding: spacing(0.7) 0;
+            justify-content: space-between;
+            cursor: pointer;
+            &:hover {
+              > a {
+                text-decoration: none;
+                color: $textSecondary;
+              }
+              > i {
+                color: $textSecondary;
+              }
+            }
+            > a {
+              @include Text($textGrey, $subtitle, $fwRegular);
+            }
+          }
+        }
+      }
+      &-item-2 {
+        display: none;
+      }
+      &-item-3 {
+        display: none;
+        > ul {
+          > li:first-child {
+            a {
+              color: $textDarkGrey;
+              font-weight: $fwBold;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__search {
+    position: relative;
+    flex-grow: 1;
+    border-radius: 200px;
+    border: 1px solid $lightGrey;
+    overflow: hidden;
+    background: $light;
+    display: flex;
+    &:hover {
+      border: 1px solid $darkGrey-1;
+    }
+
+    input {
+      @include Input($width-icon-search, none, $height-icon-search, none);
+      border-radius: 200px;
+      background: transparent;
+      font-size: 14px;
+    }
+
+    i {
+      @include Icon(
+        $width-icon-search,
+        center,
+        $height-icon-search,
+        $textDarkGrey,
+        pointer,
+        17px,
+        transparent
+      );
+    }
+  }
+
+  &__search-mobile {
+    display: none;
+  }
+
+  &__nav {
+    display: flex;
+    position: relative;
+    height: 100%;
+    &__item {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      > a {
+        @include Text($textGrey, $subtitle, $fwRegular);
+        margin-left: spacing(2.4);
+        padding: spacing(1.4) spacing(0);
+        &:hover {
+          color: $textSecondary;
+          text-decoration: none;
+        }
+      }
+      .header__nav__modal {
+        display: none;
+        right: 50%;
+        z-index: 11;
+        @include ItemAbsolute(
+          absolute,
+          $height-header,
+          110%,
+          $paper,
+          1px solid $lightGrey,
+          center,
+          spacing(1.6)
+        );
+        & > p {
+          @include Text($textDark, 19px, $fwBold);
+          line-height: 22px;
+        }
+        & > a {
+          @include Button($secondary, 1px solid transparent, 5px, 11px, 0px);
+          @include Text($textWhite, $h6, $fwBold);
+          display: block;
+          width: 100%;
+          &:hover {
+            color: #fff;
+            background-color: $blueGem;
+            text-decoration: none;
+          }
+        }
+      }
+      #modal-nav-teach {
+        right: 0;
+      }
+    }
+    .header__nav__business:hover {
+      #modal-nav-business {
+        display: block;
+      }
+    }
+    .header__nav__teach:hover {
+      #modal-nav-teach {
+        display: block;
+      }
+    }
+  }
+
+  &__cart {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 6px 0 20px;
+    &:hover {
+      #icon-cart {
+        opacity: 1;
+      }
+      .header__cart__dropdown {
+        display: block;
+      }
+    }
+    cursor: pointer;
+    > a {
+      width: 24px;
+      #icon-cart {
+        opacity: 0.6;
+      }
+    }
+    .header__cart__dropdown {
+      display: none;
+      right: 0;
+      z-index: 11;
+      @include ItemAbsolute(
+        absolute,
+        $height-header,
+        500%,
+        $paper,
+        1px solid $lightGrey,
+        center,
+        spacing(1.6)
+      );
+      > p {
+        color: $textDarkGrey;
+        margin-bottom: spacing(1);
+      }
+      > a {
+        @include Text($textSecondary, $subtitle, $fwBold);
+      }
+    }
+  }
+
+  &__btn_login {
+    @include Button($paper, 1px solid $lightGrey, 5px, 9px, 24px);
+    @include Text($textSecondary, $subtitle, $fwBold);
+    margin-left: spacing(2);
+    &:hover {
+      border-color: $darkGrey-1;
+    }
+  }
+
+  &__btn_signup {
+    @include Button($secondary, 1px solid transparent, 5px, 9px, 24px);
+    @include Text($textWhite, $subtitle, $fwBold);
+    margin-left: spacing(0.8);
+    &:hover {
+      background-color: $blueGem;
+    }
+  }
+
+  &__modal__search {
+    // display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.2s;
+    .header__modal__overplay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: $darkModal;
+    }
+    .modal__search__content {
+      position: absolute;
+      z-index: 10;
+      top: $height-header-gradient;
+      width: 100%;
+      height: $height-header-mobile;
+      background: $paper;
+      display: flex;
+      > i {
+        width: $height-header-mobile;
+        height: $height-header-mobile;
+        text-align: center;
+        line-height: $height-header-mobile;
+        font-size: $h5;
+      }
+      > input {
+        height: $height-header-mobile;
+        width: 60%;
+        border: none;
+        outline: none;
+        font-size: $h5;
+      }
+      #modalSearchClose {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .modalMenu {
+    // display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    transition: all 0.3s;
+    pointer-events: none;
+    opacity: 0;
+    &__overplay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $darkModal;
+    }
+    > i {
+      position: absolute;
+      top: spacing(1.6);
+      left: calc(#{$widthModalMenu} + 15px);
+      width: 48px;
+      height: 48px;
+      background: $paper;
+      text-align: center;
+      line-height: 48px;
+      font-size: $h4;
+      border-radius: 50%;
+      color: $grey;
+      transform: scale(0);
+      transition: all 0.4s 0.3s;
+    }
+    &__contain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: $widthModalMenu;
+      height: 100vh;
+      background: $paper;
+      overflow: hidden;
+      transform: translateX(-100%);
+      transition: all 0.3s;
+      .modalMenu__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: scroll;
+        padding-bottom: 40px;
+        z-index: 10;
+        width: 100%;
+        background: $paper;
+        opacity: 0;
+        transition: all 0.3s 0.3s;
+        &__user {
+          padding: spacing(1) spacing(1.6);
+          display: flex;
+          flex-direction: column;
+          border-bottom: 1px solid $lightGrey;
+          > a {
+            padding: spacing(0.7) 0;
+            color: $textSecondary;
+          }
+        }
+        &__list {
+          padding: spacing(1) spacing(1.6);
+          padding-top: spacing(0.5);
+          border-bottom: 1px solid $lightGrey;
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+              padding: spacing(0.7) 0;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              > span {
+                @include Text($textDarkGrey, $subtitle, $fwBold);
+              }
+              > a {
+                color: $textGrey;
+              }
+              > i {
+                color: $textGrey;
+                padding-right: spacing(0.6);
+              }
+            }
+          }
+        }
+        .modalMenu__content__udemy {
+          border: none;
+        }
+      }
+      .modalMenu__content-two {
+        background: $paper;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 11;
+        overflow: hidden;
+        overflow-y: scroll;
+        height: 100%;
+        width: 100%;
+        transform: translateX(100%);
+        transition: all 0.3s;
+        &-back {
+          display: flex;
+          align-items: center;
+          padding: spacing(1.6) spacing(1.6);
+          background: $light;
+          > i {
+            padding-left: spacing(0.6);
+            margin-right: spacing(2);
+          }
+        }
+        &-content {
+          padding: spacing(1.4) spacing(1.6);
+          > ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            > li {
+              padding: spacing(0.7) 0;
+              &:first-child {
+                padding-top: spacing(0.2);
+                > a {
+                  @include Text($textDark, $h6, $fwBold);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .header__nav {
+      .header__nav__business {
+        display: none;
+      }
+      .header__nav__teach {
+        #modal-nav-teach {
+          width: 250%;
+        }
+      }
+    }
+  }
+  @media (max-width: 920px) {
+    .header__nav {
+      .header__nav__teach {
+        display: none;
+      }
+    }
+    &__categories {
+      &__dropdown {
+        left: 15px;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    height: $height-header-mobile;
+    &__categories {
+      display: none;
+    }
+    > i {
+      display: block !important;
+      font-size: 18px;
+      margin-right: $width-icon-search;
+    }
+    &__logo {
+      margin: 0 auto;
+      img {
+        margin: 0;
+      }
+    }
+    &__nav {
+      display: none;
+    }
+    &__btn_login,
+    &__btn_signup {
+      display: none;
+    }
+
+    &__search {
+      display: none;
+      background: transparent;
+      border: none;
+      flex-grow: unset;
+      input {
+        display: none;
+      }
+    }
+
+    &__search-mobile {
+      display: block;
+    }
+
+    &__cart:hover {
+      .header__cart__dropdown {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header__logo {
+      img {
+        width: 100px;
+      }
+    }
+  }
+
+  @media (max-width: 350px) {
+    $widthModalMenu: 250px;
+    .modalMenu {
+      > i {
+        left: calc(#{$widthModalMenu} + 15px);
+      }
+    }
+    .modalMenu__contain {
+      min-width: $widthModalMenu;
+    }
+  }
+}
